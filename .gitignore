@@ -1,0 +1,12 @@
+# WPF
+*.exe
+*.dll
+bin/
+obj/
+.vs/
+
+# ASP.NET Core
+*.db
+*.user
+bin/
+obj/
