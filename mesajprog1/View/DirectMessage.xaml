@@ -71,7 +71,7 @@
                                  Padding="12,0"
                                  Background="Transparent"
                                  BorderThickness="0"
-                                 Text="SearchText"
+                                 Text="{Binding searchtext,Source={StaticResource FriendsViewModel},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                  VerticalAlignment="Stretch"
                                  VerticalContentAlignment="Center"
                                  />

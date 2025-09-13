@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:mesajprog1" 
              xmlns:local1="clr-namespace:mesajprog1.Converter"
-             xmlns:local2="clr-namespace:mesajprog1.Model"
+             xmlns:local2="clr-namespace:mesajprog1.Model" xmlns:local3="clr-namespace:mesajprog1.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -14,6 +14,7 @@
             <local2:FriendState x:Key="FriendState"/>
             <local1:ChatToVisibilityConverter x:Key="ChatToVisibilityConverter"/>
             <local1:UrlToImageSourceConverter x:Key="UrlToImageSourceConverter"/>
+            <local3:FriendsViewModel x:Key="FriendsViewModel"/>
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Width" Value="20"/>

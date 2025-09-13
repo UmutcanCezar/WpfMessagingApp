@@ -35,21 +35,24 @@ namespace mesajprog1.Service
         }
         private void RegisterHubEvents()
         {
-            if(CurrentUser.Currentuser!=null)_connection = new HubConnectionBuilder().WithUrl($"http://localhost:5298/chathub?userId={CurrentUser.Currentuser.Id}").WithAutomaticReconnect().Build();
-            _connection.On<int,int,string,DateTime>("LastMessage", (senderId, receiverId, message,sentAt) =>
+            if (CurrentUser.Currentuser != null)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                _connection = new HubConnectionBuilder().WithUrl($"http://localhost:5298/chathub?userId={CurrentUser.Currentuser.Id}").WithAutomaticReconnect().Build();
+                _connection.On<int, int, string, DateTime>("LastMessage", (senderId, receiverId, message, sentAt) =>
                 {
-                    var friend = Friends.FirstOrDefault(f => f.FriendId == senderId || f.FriendId == receiverId);
-                    if (friend != null)
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        friend.LastMessage = message;
-                        friend.LastMessageTime = sentAt;
-                        OnFriendsUpdate?.Invoke(friend);
+                        var friend = Friends.FirstOrDefault(f => f.FriendId == senderId || f.FriendId == receiverId);
+                        if (friend != null)
+                        {
+                            friend.LastMessage = message;
+                            friend.LastMessageTime = sentAt;
+                            OnFriendsUpdate?.Invoke(friend);
 
-                    }
+                        }
+                    });
                 });
-            });
+            }
         }
 
         private async Task StartHubAsync()

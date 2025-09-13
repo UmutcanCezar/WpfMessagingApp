@@ -19,6 +19,21 @@ namespace mesajprog1.ViewModel
     {
 
 
+        private string _searchtext;
+        public string searchtext
+        {
+            get => _searchtext;
+            set
+            {
+                if (_searchtext != value)
+                {
+                    _searchtext = value;
+                    OnPropertyChanged(nameof(searchtext));
+                    FriendsView.Refresh();
+                }
+            }
+        }
+
         public MessageHeaderViewModel x { get; set; }
         private readonly FriendService __friendservice;
         public ObservableCollection<FriendDto> Friends { get; set; } = new();
@@ -53,6 +68,7 @@ namespace mesajprog1.ViewModel
            _ =  InitializeAsync();
             FriendsView = CollectionViewSource.GetDefaultView(Friends);
             FriendsView.SortDescriptions.Add(new SortDescription(nameof(FriendDto.LastMessageTime), ListSortDirection.Descending));
+            FriendsView.Filter = FilterFriend;
             __friendservice.OnFriendsUpdate += friend => FriendsView.Refresh();
         }
         private async void FriendState_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -62,6 +78,16 @@ namespace mesajprog1.ViewModel
                 await InitializeAsync();
             }
         }
+        private bool FilterFriend(object obj)
+        {
+            if(obj is FriendDto friend)
+            {
+                if (string.IsNullOrWhiteSpace(searchtext)) return true;
+                return friend.Username.Contains(searchtext, StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
+        }
+
         private async Task HoverSelecet(FriendDto friend)
         {
             if(friendState.AddOrChat != 0)
