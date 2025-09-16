@@ -3,38 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:mesajprog1" 
              xmlns:local1="clr-namespace:mesajprog1.Converter"
-             xmlns:local2="clr-namespace:mesajprog1.Model" xmlns:local3="clr-namespace:mesajprog1.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local2="clr-namespace:mesajprog1.Model" 
+             xmlns:local3="clr-namespace:mesajprog1.ViewModel"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Assets/icons.xaml"/>
 
+                <!-- Senin mevcut icon resource’u -->
+                <ResourceDictionary Source="/Assets/icons.xaml"/>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Senin kendi resource’ların -->
             <local2:FriendState x:Key="FriendState"/>
             <local1:ChatToVisibilityConverter x:Key="ChatToVisibilityConverter"/>
             <local1:UrlToImageSourceConverter x:Key="UrlToImageSourceConverter"/>
             <local3:FriendsViewModel x:Key="FriendsViewModel"/>
+
+            <!-- Path için temel style -->
             <Style TargetType="{x:Type Path}">
                 <Setter Property="Height" Value="20"/>
                 <Setter Property="Width" Value="20"/>
                 <Setter Property="Stretch" Value="Uniform"/>
             </Style>
-            
-            
+
+            <!-- Icon Button Style -->
             <Style x:Key="IconButtonStyle" TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Height" Value="50"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Template">
-                    <Setter.Value >
+                    <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Background="{TemplateBinding Background}">
                                 <Path Data="{TemplateBinding Content}"
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  Fill="{TemplateBinding Foreground}"
+                                      Fill="{TemplateBinding Foreground}"
                                       Style="{StaticResource {x:Type Path}}"/>
                             </Border>
                         </ControlTemplate>
@@ -42,50 +51,48 @@
                 </Setter>
             </Style>
 
+            <!-- Reject Button Style -->
             <Style x:Key="rejectstyle" TargetType="{x:Type Button}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Height" Value="50"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Template">
-                    <Setter.Value >
+                    <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Background="{TemplateBinding Background}">
                                 <Path Data="{TemplateBinding Content}"
-                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                      Fill="{TemplateBinding Foreground}"
-                          Style="{StaticResource {x:Type Path}}"/>
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Fill="{TemplateBinding Foreground}"
+                                      Style="{StaticResource {x:Type Path}}"/>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
 
-
+            <!-- Toggle Icon Button Style -->
             <Style x:Key="ToggleIconButtonStyle" TargetType="{x:Type ToggleButton}">
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderThickness" Value="0"/>
                 <Setter Property="Height" Value="50"/>
                 <Setter Property="Width" Value="50"/>
                 <Setter Property="Template">
-                    <Setter.Value >
+                    <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ToggleButton}">
                             <Border Background="{TemplateBinding Background}">
                                 <Path Data="{TemplateBinding Content}"
-                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                  Fill="{TemplateBinding Foreground}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Fill="{TemplateBinding Foreground}"
                                       Style="{StaticResource {x:Type Path}}"/>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
             </Style>
 
         </ResourceDictionary>
-
-         
     </Application.Resources>
 </Application>

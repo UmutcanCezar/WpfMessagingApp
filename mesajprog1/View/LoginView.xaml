@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:mesajprog1.View"
         xmlns:vms="clr-namespace:mesajprog1.ViewModel"
         mc:Ignorable="d"
@@ -43,24 +44,31 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                    <TextBlock Text="EmailAdress:" />
-                    <TextBox Width="250" HorizontalAlignment="Left" Padding="2" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Text="Password:"/>
+                    
+                    <TextBox Width="250" HorizontalAlignment="Left" Padding="2" Margin="0 0 0 10" Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email Adress:"
+                             materialDesign:HintAssist.Background="Transparent" />
+                    
                     <Grid>
-                        <PasswordBox Width="250" HorizontalAlignment="Left" Padding="2" vms:PasswordBoxAssistant.BoundPassword="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <PasswordBox Width="250" HorizontalAlignment="Left" Padding="2" vms:PasswordBoxAssistant.BoundPassword="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}" materialDesign:HintAssist.Hint="Password:" />
                         
 
                     </Grid>
                     
                 </StackPanel>
-                <Grid Grid.Row="2" Height="25" VerticalAlignment="Top">
+                <Grid Grid.Row="2" Height="50" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Content="Login" Width="120" HorizontalAlignment="Right" Command="{Binding LoginCommand}"/>
-                    <Button Grid.Column="2" Content="Register" Width="120" HorizontalAlignment="left" Command="{Binding LoginRegisterCommand}"/>
+                    <Button Grid.Column="0" Content="Login" Width="120" HorizontalAlignment="Right" Command="{Binding LoginCommand}" 
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" 
+                            ToolTip="MaterialDesignFlatSecondaryDarkBgButton"/>
+                    <Button Grid.Column="2" Content="Register" Width="120" HorizontalAlignment="left" Command="{Binding LoginRegisterCommand}"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}" 
+                            ToolTip="MaterialDesignFlatSecondaryDarkBgButton"/>
 
                 </Grid>
             </Grid>
